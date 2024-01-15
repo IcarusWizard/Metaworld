@@ -92,7 +92,6 @@ class SawyerSweepIntoGoalEnvV2(SawyerXYZEnv):
                 goal_pos = self._get_state_rand_vec()
             self.obj_init_pos = np.concatenate((goal_pos[:2], [self.obj_init_pos[-1]]))
 
-        print(self.obj_init_pos)
         self._set_obj_xyz(self.obj_init_pos)
         self.maxPushDist = np.linalg.norm(self.obj_init_pos[:2] - np.array(self._target_pos)[:2])
 
