@@ -88,14 +88,15 @@ class SawyerHandInsertEnvV2(SawyerXYZEnv):
         self.prev_obs = self._get_curr_obs_combined_no_goal()
         self._target_pos = self.goal.copy()
         self.obj_init_angle = self.init_config['obj_init_angle']
+        self.obj_init_pos = self.init_config['obj_init_pos']
         self.objHeight = self.get_body_com('obj')[2]
 
-        # if self.random_init:
-        goal_pos = self._get_state_rand_vec()
-        while np.linalg.norm(goal_pos[:2] - goal_pos[-3:-1]) < 0.15:
+        if self.random_init:
             goal_pos = self._get_state_rand_vec()
-        self.obj_init_pos = np.concatenate((goal_pos[:2], [self.obj_init_pos[-1]]))
-        self._target_pos = goal_pos[-3:]
+            while np.linalg.norm(goal_pos[:2] - goal_pos[-3:-1]) < 0.15:
+                goal_pos = self._get_state_rand_vec()
+            self.obj_init_pos = np.concatenate((goal_pos[:2], [self.obj_init_pos[-1]]))
+            self._target_pos = goal_pos[-3:]
 
         self._set_obj_xyz(self.obj_init_pos)
         return self._get_obs()
