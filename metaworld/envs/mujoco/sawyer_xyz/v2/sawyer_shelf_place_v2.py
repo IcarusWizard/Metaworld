@@ -88,7 +88,7 @@ class SawyerShelfPlaceEnvV2(SawyerXYZEnv):
         self._reset_hand()
         self.sim.model.body_pos[self.model.body_name2id('shelf')] = self.goal.copy() - np.array([0, 0, 0.3])
         self._target_pos = self.sim.model.site_pos[self.model.site_name2id('goal')] + self.sim.model.body_pos[self.model.body_name2id('shelf')]
-        self.obj_init_pos = self.adjust_initObjPos(self.init_config['obj_init_pos'])
+        self.obj_init_pos = np.array(self.adjust_initObjPos(self.init_config['obj_init_pos']))
         self.obj_init_angle = self.init_config['obj_init_angle']
 
         if self.random_init:
