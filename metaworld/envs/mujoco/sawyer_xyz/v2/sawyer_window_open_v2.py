@@ -85,6 +85,7 @@ class SawyerWindowOpenEnvV2(SawyerXYZEnv):
 
     def reset_model(self):
         self._reset_hand()
+        self.obj_init_pos = self.init_config['obj_init_pos']
         self.prev_obs = self._get_curr_obs_combined_no_goal()
 
         if self.random_init:
