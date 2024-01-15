@@ -96,8 +96,7 @@ class SawyerButtonPressWallEnvV2(SawyerXYZEnv):
             goal_pos = self._get_state_rand_vec()
             self.obj_init_pos = goal_pos
 
-        self.sim.model.body_pos[
-            self.model.body_name2id('box')] = self.obj_init_pos
+        self.sim.model.body_pos[self.model.body_name2id('box')] = self.obj_init_pos
         self._set_obj_xyz(0)
         self._target_pos = self._get_site_pos('hole')
 
