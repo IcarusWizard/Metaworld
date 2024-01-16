@@ -90,9 +90,10 @@ class SawyerBasketballEnvV2(SawyerXYZEnv):
         self.prev_obs = self._get_curr_obs_combined_no_goal()
 
         basket_pos = self.goal.copy()
+        self.obj_init_pos = self.init_config['obj_init_pos']
         self.sim.model.body_pos[self.model.body_name2id('basket_goal')] = basket_pos
         self._target_pos = self.data.site_xpos[self.model.site_name2id('goal')]
-
+        
         if self.random_init:
             goal_pos = self._get_state_rand_vec()
             basket_pos = goal_pos[3:]
@@ -103,7 +104,7 @@ class SawyerBasketballEnvV2(SawyerXYZEnv):
             self.sim.model.body_pos[self.model.body_name2id('basket_goal')] = basket_pos
             self._target_pos = self.data.site_xpos[self.model.site_name2id('goal')]
 
-        self._set_obj_xyz(self.obj_init_pos)
+        self._set_obj_xyz(self.obj_init_pos) # this change the hand position for some reason
         return self._get_obs()
 
     def compute_reward(self, action, obs):

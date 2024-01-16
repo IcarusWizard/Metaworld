@@ -29,6 +29,7 @@ class SawyerDoorCloseEnvV2(SawyerDoorEnvV2):
     def reset_model(self):
         self._reset_hand()
         self._target_pos = self.goal.copy()
+        self.obj_init_pos = self.init_config['obj_init_pos']
         self.objHeight = self.data.get_geom_xpos('handle')[2]
 
         if self.random_init:
